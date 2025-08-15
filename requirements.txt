@@ -1,1 +1,11 @@
+# requirements.txt
 
+flask
+google-generativeai
+requests
+python-docx
+PyMuPDF
+pysubs2
+langdetect
+python-dotenv
+pysocks
