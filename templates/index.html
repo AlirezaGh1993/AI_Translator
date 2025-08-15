@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مترجم هوشمند اسناد و زیرنویس</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>مترجم هوشمند 🤖</h1>
+            <p>اسناد (DOCX, PDF, TXT) و زیرنویس (SRT, ASS) خود را با هوش مصنوعی ترجمه کنید</p>
+        </header>
 
+        <div class="tabs">
+            <button class="tab-link active" onclick="openTab(event, 'docs')">ترجمه اسناد</button>
+            <button class="tab-link" onclick="openTab(event, 'subs')">ترجمه زیرنویس</button>
+        </div>
+
+        <main>
+            <form id="translation-form" enctype="multipart/form-data">
+                <div class="settings">
+                    <h3>تنظیمات API و پراکسی</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="gemini-key">Gemini API Key</label>
+                            <input type="password" id="gemini-key" placeholder="کلید Gemini API خود را وارد کنید">
+                        </div>
+                        <div class="form-group">
+                            <label for="deepseek-key">DeepSeek API Key</label>
+                            <input type="password" id="deepseek-key" placeholder="کلید DeepSeek API خود را وارد کنید">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="proxy">پراکسی (اختیاری)</label>
+                            <input type="text" id="proxy" placeholder="مثال: socks5://user:pass@host:port یا http://host:port">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="translation-core">
+                    <h3>تنظیمات ترجمه</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="ai-provider">انتخاب هوش مصنوعی</label>
+                            <select id="ai-provider">
+                                <option value="gemini">Google Gemini 1.5 Flash</option>
+                                <option value="deepseek">DeepSeek</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="translation-style">سبک ترجمه</label>
+                            <select id="translation-style">
+                                <option value="Formal">رسمی (Formal)</option>
+                                <option value="Colloquial">محاوره‌ای (Colloquial)</option>
+                                <option value="Literary">ادبی (Literary)</option>
+                                <option value="Novel">رمان (Novel)</option>
+                                <option value="Journalistic">ژورنالیستی (Journalistic)</option>
+                                <option value="Technical">فنی (Technical)</option>
+                                <option value="Transcreation">تطبیقی (Transcreation)</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                           <label for="target-lang">زبان مقصد</label>
+                           <input type="text" id="target-lang" value="Persian (Farsi)" placeholder="مثال: Persian (Farsi)">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="docs" class="tab-content active">
+                    <h4>فایل سند خود را انتخاب کنید</h4>
+                    <input type="file" id="doc-file" name="file" accept=".docx,.pdf,.txt">
+                </div>
+                <div id="subs" class="tab-content">
+                    <h4>فایل زیرنویس خود را انتخاب کنید</h4>
+                    <input type="file" id="sub-file" name="file" accept=".srt,.ass">
+                </div>
+
+                <button type="submit" class="submit-btn">شروع ترجمه</button>
+            </form>
+
+            <div id="progress-area" class="hidden">
+                <h3>وضعیت ترجمه</h3>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <p id="progress-status">در حال آماده سازی...</p>
+                <a id="download-link" class="hidden" download>دانلود فایل ترجمه شده</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
