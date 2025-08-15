@@ -1,1 +1,205 @@
+/* static/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
 
+:root {
+    --bg-color: #f4f7f9;
+    --text-color: #333;
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --border-color: #dbe2e8;
+    --card-bg: #ffffff;
+    --success-color: #28a745;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    direction: rtl;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-link {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #888;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.settings, .translation-core {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+input[type="file"] {
+    padding: 0.5rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.submit-btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+#progress-area {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 20px;
+    background-color: var(--success-color);
+    transition: width 0.4s ease;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+}
+
+#progress-status {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+}
+
+#download-link {
+    display: block;
+    width: fit-content;
+    margin: 1rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--success-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+#download-link:hover {
+    background-color: #218838;
+}
+
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+    body { padding: 1rem; }
+    .form-grid { grid-template-columns: 1fr; }
+}
